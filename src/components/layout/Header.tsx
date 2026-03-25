@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Phone, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const navigation = [
   {
@@ -73,7 +74,7 @@ export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-gray-100 dark:border-slate-800">
       {/* Top bar */}
       <div className="hidden lg:block bg-slate-900 text-white">
         <div className="max-w-7xl mx-auto px-6 py-1.5 flex items-center justify-between text-xs">
@@ -100,10 +101,10 @@ export default function Header() {
               M
             </div>
             <div>
-              <span className="text-xl font-bold text-slate-900 tracking-tight">
+              <span className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
                 Mar<span className="text-blue-600">KEN</span>
               </span>
-              <p className="text-[10px] text-slate-500 -mt-1 leading-none tracking-wide">
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 -mt-1 leading-none tracking-wide">
                 HEALTHCARE SOLUTIONS
               </p>
             </div>
@@ -121,7 +122,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors rounded-md",
+                    "flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-md",
                     activeDropdown === item.label && "text-blue-600"
                   )}
                 >
@@ -140,7 +141,7 @@ export default function Header() {
                         transition={{ duration: 0.15 }}
                         className="absolute top-full left-0 pt-2"
                       >
-                        <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-6 min-w-[600px]">
+                        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-gray-100 dark:border-slate-700 p-6 min-w-[600px]">
                           <div className="grid grid-cols-3 gap-6">
                             {item.children.map((group) => (
                               <div key={group.group}>
@@ -152,7 +153,7 @@ export default function Header() {
                                     <li key={subItem.href}>
                                       <Link
                                         href={subItem.href}
-                                        className="text-sm text-slate-600 hover:text-blue-600 transition-colors block py-0.5"
+                                        className="text-sm text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block py-0.5"
                                       >
                                         {subItem.label}
                                       </Link>
@@ -173,8 +174,9 @@ export default function Header() {
 
           {/* Right actions */}
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <button
-              className="p-2 text-slate-500 hover:text-blue-600 transition-colors"
+              className="p-2 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               aria-label="Search"
             >
               <Search className="w-5 h-5" />
@@ -186,7 +188,7 @@ export default function Header() {
               Get Quote
             </Link>
             <button
-              className="lg:hidden p-2 text-slate-700"
+              className="lg:hidden p-2 text-slate-700 dark:text-slate-300"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -203,14 +205,14 @@ export default function Header() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden bg-white border-t overflow-hidden"
+            className="lg:hidden bg-white dark:bg-slate-900 border-t dark:border-slate-800 overflow-hidden"
           >
             <div className="px-4 py-6 space-y-4">
               {navigation.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="block text-base font-medium text-slate-700 py-2"
+                  className="block text-base font-medium text-slate-700 dark:text-slate-200 py-2"
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
