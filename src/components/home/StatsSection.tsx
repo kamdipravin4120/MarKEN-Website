@@ -45,16 +45,16 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   }, [value]);
 
   return (
-    <div ref={ref} className="text-4xl md:text-5xl font-bold text-white tabular-nums">
+    <div ref={ref} className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tabular-nums">
       {count.toLocaleString()}
-      <span className="text-blue-400">{suffix}</span>
+      <span className="text-blue-600 dark:text-blue-400">{suffix}</span>
     </div>
   );
 }
 
 export default function StatsSection() {
   return (
-    <section className="bg-slate-900 py-20">
+    <section className="bg-slate-50 dark:bg-slate-900 py-20">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,10 +62,10 @@ export default function StatsSection() {
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
             Trusted by India&apos;s Healthcare Leaders
           </h2>
-          <p className="mt-3 text-slate-400 max-w-2xl mx-auto">
+          <p className="mt-3 text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
             From AIIMS to district hospitals, MarKEN equipment powers healthcare delivery at every scale.
           </p>
         </motion.div>
@@ -80,8 +80,8 @@ export default function StatsSection() {
               className="text-center"
             >
               <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-              <p className="mt-2 text-sm font-semibold text-slate-300">{stat.label}</p>
-              <p className="text-xs text-slate-500 mt-1">{stat.description}</p>
+              <p className="mt-2 text-sm font-semibold text-slate-700 dark:text-slate-300">{stat.label}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">{stat.description}</p>
             </motion.div>
           ))}
         </div>
