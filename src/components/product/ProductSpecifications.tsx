@@ -9,7 +9,7 @@ export default function ProductSpecifications({ product }: { product: Product })
   const variant = product.variants.find((v) => v.id === selectedVariant);
 
   return (
-    <section className="py-20 bg-slate-50" id="specifications">
+    <section className="py-20 bg-slate-50 dark:bg-slate-900" id="specifications">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -17,10 +17,10 @@ export default function ProductSpecifications({ product }: { product: Product })
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <span className="text-sm font-semibold text-blue-600 uppercase tracking-wider">
+          <span className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
             Specifications
           </span>
-          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-slate-900">
+          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
             Technical Details
           </h2>
         </motion.div>
@@ -28,7 +28,7 @@ export default function ProductSpecifications({ product }: { product: Product })
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Variant selector */}
           <div className="lg:col-span-1">
-            <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">
+            <h3 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">
               Select Model
             </h3>
             <div className="space-y-2">
@@ -38,14 +38,14 @@ export default function ProductSpecifications({ product }: { product: Product })
                   onClick={() => setSelectedVariant(v.id)}
                   className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
                     selectedVariant === v.id
-                      ? "border-blue-600 bg-blue-50 shadow-sm"
-                      : "border-slate-200 bg-white hover:border-blue-300"
+                      ? "border-blue-600 bg-blue-50 dark:bg-blue-500/10 shadow-sm"
+                      : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-blue-300 dark:hover:border-blue-600"
                   }`}
                 >
-                  <p className="font-bold text-slate-900">{v.model}</p>
-                  <p className="text-sm text-slate-500 mt-0.5">{v.capacity}</p>
+                  <p className="font-bold text-slate-900 dark:text-white">{v.model}</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">{v.capacity}</p>
                   {v.specs.map((s) => (
-                    <p key={s.label} className="text-xs text-slate-400 mt-0.5">
+                    <p key={s.label} className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
                       {s.label}: {s.value} {s.unit}
                     </p>
                   ))}
@@ -56,8 +56,8 @@ export default function ProductSpecifications({ product }: { product: Product })
 
           {/* Specifications table */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
-              <div className="p-6 bg-slate-900 text-white">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+              <div className="p-6 bg-slate-900 dark:bg-slate-950 text-white">
                 <h3 className="text-lg font-bold">
                   {variant?.model} — {variant?.capacity}
                 </h3>
@@ -65,16 +65,16 @@ export default function ProductSpecifications({ product }: { product: Product })
                   Dimensions: {variant?.dimensions} • Weight: {variant?.weight}
                 </p>
               </div>
-              <div className="divide-y divide-slate-100">
+              <div className="divide-y divide-slate-100 dark:divide-slate-700">
                 {product.specifications.map((spec, i) => (
                   <div
                     key={spec.label}
                     className={`flex items-center justify-between px-6 py-3.5 ${
-                      i % 2 === 0 ? "bg-white" : "bg-slate-50/50"
+                      i % 2 === 0 ? "bg-white dark:bg-slate-800" : "bg-slate-50/50 dark:bg-slate-800/50"
                     }`}
                   >
-                    <span className="text-sm text-slate-500">{spec.label}</span>
-                    <span className="text-sm font-semibold text-slate-800">
+                    <span className="text-sm text-slate-500 dark:text-slate-400">{spec.label}</span>
+                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">
                       {spec.value}
                     </span>
                   </div>
@@ -85,12 +85,12 @@ export default function ProductSpecifications({ product }: { product: Product })
                     key={spec.label}
                     className={`flex items-center justify-between px-6 py-3.5 ${
                       (product.specifications.length + i) % 2 === 0
-                        ? "bg-white"
-                        : "bg-slate-50/50"
+                        ? "bg-white dark:bg-slate-800"
+                        : "bg-slate-50/50 dark:bg-slate-800/50"
                     }`}
                   >
-                    <span className="text-sm text-slate-500">{spec.label}</span>
-                    <span className="text-sm font-semibold text-blue-600">
+                    <span className="text-sm text-slate-500 dark:text-slate-400">{spec.label}</span>
+                    <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
                       {spec.value} {spec.unit}
                     </span>
                   </div>
@@ -107,11 +107,11 @@ export default function ProductSpecifications({ product }: { product: Product })
           viewport={{ once: true }}
           className="mt-14"
         >
-          <h3 className="text-xl font-bold text-slate-900 mb-6">Compare Models</h3>
+          <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Compare Models</h3>
           <div className="overflow-x-auto">
-            <table className="w-full bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <table className="w-full bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden">
               <thead>
-                <tr className="bg-slate-900 text-white">
+                <tr className="bg-slate-900 dark:bg-slate-950 text-white">
                   <th className="px-4 py-3 text-left text-sm font-semibold">Model</th>
                   <th className="px-4 py-3 text-left text-sm font-semibold">Capacity</th>
                   <th className="px-4 py-3 text-left text-sm font-semibold">Blood Bags</th>
@@ -120,7 +120,7 @@ export default function ProductSpecifications({ product }: { product: Product })
                   <th className="px-4 py-3 text-left text-sm font-semibold">Power</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
                 {product.variants.map((v, i) => {
                   const bags = v.specs.find((s) => s.label === "Blood Bag Storage");
                   const power = v.specs.find((s) => s.label === "Power Consumption");
@@ -128,19 +128,19 @@ export default function ProductSpecifications({ product }: { product: Product })
                     <tr
                       key={v.id}
                       className={`${
-                        i % 2 === 0 ? "bg-white" : "bg-slate-50/50"
-                      } hover:bg-blue-50/50 transition-colors`}
+                        i % 2 === 0 ? "bg-white dark:bg-slate-800" : "bg-slate-50/50 dark:bg-slate-800/50"
+                      } hover:bg-blue-50/50 dark:hover:bg-blue-500/10 transition-colors`}
                     >
-                      <td className="px-4 py-3 text-sm font-bold text-slate-900">
+                      <td className="px-4 py-3 text-sm font-bold text-slate-900 dark:text-white">
                         {v.model}
                       </td>
-                      <td className="px-4 py-3 text-sm text-slate-600">{v.capacity}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">
+                      <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">{v.capacity}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
                         {bags?.value} {bags?.unit}
                       </td>
-                      <td className="px-4 py-3 text-sm text-slate-600">{v.dimensions}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">{v.weight}</td>
-                      <td className="px-4 py-3 text-sm text-slate-600">
+                      <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">{v.dimensions}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">{v.weight}</td>
+                      <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
                         {power?.value} {power?.unit}
                       </td>
                     </tr>
