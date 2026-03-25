@@ -392,10 +392,10 @@ function Scene({
 
 function LoadingFallback() {
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-slate-50 to-slate-100">
+    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin" />
-      <p className="mt-4 text-sm text-slate-500 font-medium">Loading 3D Model...</p>
-      <p className="text-xs text-slate-400 mt-1">Preparing interactive experience</p>
+      <p className="mt-4 text-sm text-slate-500 dark:text-slate-400 font-medium">Loading 3D Model...</p>
+      <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">Preparing interactive experience</p>
     </div>
   );
 }
@@ -495,7 +495,7 @@ export default function Product3DViewer({
   return (
     <div
       ref={containerRef}
-      className={`relative bg-gradient-to-b from-slate-50 via-slate-100 to-white rounded-2xl overflow-hidden border border-slate-200 ${
+      className={`relative bg-gradient-to-b from-slate-50 via-slate-100 to-white dark:from-slate-900 dark:via-slate-800 dark:to-slate-950 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 ${
         isFullscreen ? "fixed inset-0 z-50 rounded-none" : "aspect-[4/3] lg:aspect-[16/10]"
       }`}
     >
@@ -523,7 +523,7 @@ export default function Product3DViewer({
       {/* Top bar */}
       <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
         <div className="pointer-events-auto">
-          <h3 className="text-sm font-semibold text-slate-800 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-sm">
+          <h3 className="text-sm font-semibold text-slate-800 dark:text-white bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-sm">
             {productName} — 3D Interactive View
           </h3>
         </div>
@@ -533,7 +533,7 @@ export default function Product3DViewer({
             className={`p-2 rounded-lg shadow-sm backdrop-blur-sm transition-colors ${
               showHotspots
                 ? "bg-blue-600 text-white"
-                : "bg-white/80 text-slate-600 hover:bg-white"
+                : "bg-white/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-white"
             }`}
             title="Toggle hotspots"
           >
@@ -541,7 +541,7 @@ export default function Product3DViewer({
           </button>
           <button
             onClick={toggleFullscreen}
-            className="p-2 bg-white/80 backdrop-blur-sm text-slate-600 rounded-lg shadow-sm hover:bg-white transition-colors"
+            className="p-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm text-slate-600 dark:text-slate-300 rounded-lg shadow-sm hover:bg-white transition-colors"
             title="Fullscreen"
           >
             <Maximize2 className="w-4 h-4" />
@@ -566,11 +566,11 @@ export default function Product3DViewer({
               <button
                 onClick={prevGuidedStep}
                 disabled={guidedStep === 0}
-                className="p-2 bg-white/90 backdrop-blur-sm text-slate-600 rounded-lg disabled:opacity-40 hover:bg-white transition-colors"
+                className="p-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm text-slate-600 dark:text-slate-300 rounded-lg disabled:opacity-40 hover:bg-white transition-colors"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
-              <span className="text-xs font-medium text-slate-600 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg">
+              <span className="text-xs font-medium text-slate-600 dark:text-slate-300 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm px-3 py-2 rounded-lg">
                 {guidedStep + 1} / {hotspots.length}
               </span>
               <button
@@ -588,7 +588,7 @@ export default function Product3DViewer({
                   setGuidedMode(false);
                   resetCamera();
                 }}
-                className="p-2 bg-white/90 backdrop-blur-sm text-slate-500 rounded-lg hover:bg-white transition-colors"
+                className="p-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm text-slate-600 dark:text-slate-300 rounded-lg hover:bg-white transition-colors"
               >
                 <Pause className="w-4 h-4" />
               </button>
@@ -600,7 +600,7 @@ export default function Product3DViewer({
         <div className="flex gap-2 pointer-events-auto">
           <button
             onClick={resetCamera}
-            className="p-2 bg-white/80 backdrop-blur-sm text-slate-600 rounded-lg shadow-sm hover:bg-white transition-colors"
+            className="p-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm text-slate-600 dark:text-slate-300 rounded-lg shadow-sm hover:bg-white transition-colors"
             title="Reset view"
           >
             <RotateCcw className="w-4 h-4" />
@@ -616,21 +616,21 @@ export default function Product3DViewer({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-16 right-4 w-72 bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-slate-200 overflow-hidden pointer-events-auto"
+            className="absolute top-16 right-4 w-72 bg-white/95 dark:bg-slate-800/95 backdrop-blur-md rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden pointer-events-auto"
           >
             <div className="p-4">
               <div className="flex items-start justify-between mb-2">
-                <h4 className="text-sm font-bold text-slate-900">
+                <h4 className="text-sm font-bold text-slate-900 dark:text-white">
                   {activeHotspotData.label}
                 </h4>
                 <button
                   onClick={() => setActiveHotspot(null)}
-                  className="p-1 text-slate-400 hover:text-slate-600 transition-colors"
+                  className="p-1 text-slate-400 dark:text-slate-500 hover:text-slate-600 transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                 {activeHotspotData.description}
               </p>
             </div>
@@ -641,7 +641,7 @@ export default function Product3DViewer({
                   <div
                     key={i}
                     className={`h-1 flex-1 rounded-full ${
-                      i <= guidedStep ? "bg-blue-600" : "bg-slate-200"
+                      i <= guidedStep ? "bg-blue-600" : "bg-slate-200 dark:bg-slate-600"
                     }`}
                   />
                 ))}
@@ -652,7 +652,7 @@ export default function Product3DViewer({
       </AnimatePresence>
 
       {/* Instructions overlay (shown initially) */}
-      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 text-xs text-slate-400 pointer-events-none">
+      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 text-xs text-slate-400 dark:text-slate-500 pointer-events-none">
         Drag to rotate • Scroll to zoom • Click hotspots for details
       </div>
     </div>
