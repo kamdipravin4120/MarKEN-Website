@@ -1,6 +1,7 @@
 import HeroSection from "@/components/home/HeroSection";
 import ProductCategories from "@/components/home/ProductCategories";
 import StatsSection from "@/components/home/StatsSection";
+import WhyMarKEN from "@/components/home/WhyMarKEN";
 import CTASection from "@/components/home/CTASection";
 
 export default function HomePage() {
@@ -9,6 +10,7 @@ export default function HomePage() {
       <HeroSection />
       <ProductCategories />
       <StatsSection />
+      <WhyMarKEN />
       <CTASection />
     </>
   );
