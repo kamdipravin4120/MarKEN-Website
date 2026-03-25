@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFAB from "@/components/ui/WhatsAppFAB";
 import OrganizationSchema from "@/components/seo/OrganizationSchema";
+import ThemeProvider from "@/components/ui/ThemeProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -58,15 +59,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
         <OrganizationSchema />
       </head>
-      <body className="min-h-full flex flex-col font-sans">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppFAB />
+      <body className="min-h-full flex flex-col font-sans bg-[var(--color-surface)] text-[var(--color-text-body)]">
+        <ThemeProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <WhatsAppFAB />
+        </ThemeProvider>
       </body>
     </html>
   );
