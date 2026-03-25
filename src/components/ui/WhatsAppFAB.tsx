@@ -43,7 +43,7 @@ export default function WhatsAppFAB() {
         onClick={() => setExpanded(!expanded)}
         className={`w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-all ${
           expanded
-            ? "bg-slate-800 text-white"
+            ? "bg-slate-800 dark:bg-slate-700 text-white"
             : "bg-green-500 text-white hover:bg-green-600"
         }`}
       >

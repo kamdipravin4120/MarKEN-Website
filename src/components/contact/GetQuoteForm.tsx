@@ -56,8 +56,8 @@ export default function GetQuoteForm({
         className="text-center py-12 px-6"
       >
         <CheckCircle className="w-16 h-16 text-green-500 mx-auto" />
-        <h3 className="mt-4 text-2xl font-bold text-slate-900">Quote Request Received!</h3>
-        <p className="mt-2 text-slate-500 max-w-md mx-auto">
+        <h3 className="mt-4 text-2xl font-bold text-slate-900 dark:text-white">Quote Request Received!</h3>
+        <p className="mt-2 text-slate-500 dark:text-slate-400 max-w-md mx-auto">
           Our sales team will get back to you within 24 hours with a customized proposal.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -71,7 +71,7 @@ export default function GetQuoteForm({
           </a>
           <a
             href="/resources/brochures"
-            className="px-5 py-2.5 border border-slate-200 text-slate-700 text-sm font-semibold rounded-lg"
+            className="px-5 py-2.5 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm font-semibold rounded-lg"
           >
             Download Brochures
           </a>
@@ -84,7 +84,7 @@ export default function GetQuoteForm({
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
             Full Name *
           </label>
           <input
@@ -94,12 +94,12 @@ export default function GetQuoteForm({
             required
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+            className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
             placeholder="Dr. John Doe"
           />
         </div>
         <div>
-          <label htmlFor="organization" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="organization" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
             Organization *
           </label>
           <input
@@ -109,7 +109,7 @@ export default function GetQuoteForm({
             required
             value={formData.organization}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+            className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
             placeholder="City Hospital"
           />
         </div>
@@ -117,7 +117,7 @@ export default function GetQuoteForm({
 
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
             Email *
           </label>
           <input
@@ -127,12 +127,12 @@ export default function GetQuoteForm({
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+            className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
             placeholder="john@hospital.com"
           />
         </div>
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="phone" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
             Phone *
           </label>
           <input
@@ -142,7 +142,7 @@ export default function GetQuoteForm({
             required
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+            className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
             placeholder="+91 98765 43210"
           />
         </div>
@@ -150,7 +150,7 @@ export default function GetQuoteForm({
 
       <div className="grid sm:grid-cols-3 gap-4">
         <div>
-          <label htmlFor="category" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="category" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
             Category
           </label>
           <select
@@ -158,7 +158,7 @@ export default function GetQuoteForm({
             name="category"
             value={formData.category}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white transition-colors"
+            className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg text-sm text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
           >
             <option value="">Select category</option>
             {productCategories.map((cat) => (
@@ -169,7 +169,7 @@ export default function GetQuoteForm({
           </select>
         </div>
         <div>
-          <label htmlFor="product" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="product" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
             Product
           </label>
           <input
@@ -178,12 +178,12 @@ export default function GetQuoteForm({
             name="product"
             value={formData.product}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+            className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
             placeholder="e.g. Blood Bank Refrigerator"
           />
         </div>
         <div>
-          <label htmlFor="city" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="city" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
             City
           </label>
           <input
@@ -192,14 +192,14 @@ export default function GetQuoteForm({
             name="city"
             value={formData.city}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+            className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
             placeholder="Mumbai"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1.5">
+        <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
           Additional Requirements
         </label>
         <textarea
@@ -208,7 +208,7 @@ export default function GetQuoteForm({
           rows={3}
           value={formData.message}
           onChange={handleChange}
-          className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-none transition-colors"
+          className="w-full px-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-none transition-colors"
           placeholder="Tell us about your requirements, quantity needed, timeline..."
         />
       </div>
@@ -231,7 +231,7 @@ export default function GetQuoteForm({
         )}
       </button>
 
-      <p className="text-xs text-slate-400 text-center">
+      <p className="text-xs text-slate-400 dark:text-slate-500 text-center">
         We typically respond within 24 hours. Your information is kept confidential.
       </p>
     </form>
