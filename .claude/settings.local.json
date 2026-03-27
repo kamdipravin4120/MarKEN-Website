@@ -11,7 +11,19 @@
       "Bash(npx create-next-app@latest marken-website --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-pnpm --no-turbopack --no-react-compiler)",
       "Bash(cp -a /home/pk/WORK/Project/marken-website/. /home/pk/WORK/Project/MarKEN_Website/)",
       "Bash(rm -rf /home/pk/WORK/Project/marken-website)",
-      "mcp__plugin_claude-mem_mcp-search__get_observations"
+      "mcp__plugin_claude-mem_mcp-search__get_observations",
+      "Bash(git commit:*)",
+      "Bash(git add:*)",
+      "Bash(wait 218532)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(while kill:*)",
+      "Bash(do sleep:*)",
+      "Bash(done)",
+      "Bash(pnpm --dir /home/pk/WORK/Project/MarKEN_Website build)",
+      "WebFetch(domain:poly.pizza)",
+      "Bash(curl -sI \"https://models.poly.pizza/U5AKLsQyXO.glb\")",
+      "Bash(curl -sI \"https://cdn.poly.pizza/U5AKLsQyXO.glb\")",
+      "Bash(curl -sL \"https://poly.pizza/m/U5AKLsQyXO\")"
     ]
   }
 }
