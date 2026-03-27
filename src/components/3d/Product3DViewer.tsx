@@ -287,7 +287,7 @@ function RefrigeratorModel({ showHotspots }: { showHotspots: boolean }) {
 
 function GLTFModel({ url }: { url: string }) {
   const { scene } = useGLTF(url);
-  return <primitive object={scene} scale={1} />;
+  return <primitive object={scene} scale={1} position={[0, -1.05, 0]} />;
 }
 
 // ============================================

@@ -47,6 +47,7 @@ export default function BBR3DExperience() {
         <Product3DViewer
           hotspots={product.hotspots || []}
           productName={product.name}
+          modelUrl="/models/refrigerator.glb"
         />
 
         {/* Below-viewer content */}
