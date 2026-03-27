@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { productCategories } from "@/data/products";
+import { getCategoryStyle } from "@/lib/category-styles";
 
 export default function ProductCategories() {
   return (
@@ -27,41 +28,45 @@ export default function ProductCategories() {
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {productCategories.map((category, i) => (
-            <motion.div
-              key={category.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <Link
-                href={category.href}
-                className="group block bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700 hover:border-blue-200 dark:hover:border-blue-500 hover:shadow-lg dark:hover:shadow-blue-500/10 transition-all duration-300"
+          {productCategories.map((category, i) => {
+            const { icon: CategoryIcon, gradient } = getCategoryStyle(category.id);
+            return (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
               >
-                {/* Image placeholder */}
-                <div className="aspect-[4/3] bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4">
-                    <span className="text-xs text-white/80 font-medium">
-                      {category.productCount} products
-                    </span>
+                <Link
+                  href={category.href}
+                  className="group block bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700 hover:border-blue-200 dark:hover:border-blue-500 hover:shadow-lg dark:hover:shadow-blue-500/10 transition-all duration-300"
+                >
+                  {/* Category image placeholder */}
+                  <div className={`aspect-[4/3] bg-gradient-to-br ${gradient} relative overflow-hidden flex items-center justify-center`}>
+                    <CategoryIcon className="w-24 h-24 text-white/20" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                    <div className="absolute bottom-4 left-4">
+                      <span className="text-xs text-white/90 font-medium bg-black/20 px-2 py-1 rounded-full backdrop-blur-sm">
+                        {category.productCount} products
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">
-                    {category.name}
-                  </h3>
-                  <p className="mt-1.5 text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
-                    {category.description}
-                  </p>
-                  <div className="mt-4 flex items-center text-sm text-blue-600 font-semibold group-hover:gap-2 transition-all">
-                    View Products <ArrowRight className="w-4 h-4 ml-1" />
+                  <div className="p-5">
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors">
+                      {category.name}
+                    </h3>
+                    <p className="mt-1.5 text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                      {category.description}
+                    </p>
+                    <div className="mt-4 flex items-center text-sm text-blue-600 font-semibold group-hover:gap-2 transition-all">
+                      View Products <ArrowRight className="w-4 h-4 ml-1" />
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

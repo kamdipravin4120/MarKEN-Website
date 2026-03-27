@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Shield, Download, Box } from "lucide-react";
 import type { Product } from "@/types";
+import { getCategoryStyle } from "@/lib/category-styles";
 
 export default function ProductHero({ product }: { product: Product }) {
+  const { icon: CategoryIcon, gradient } = getCategoryStyle(product.category);
   return (
     <section className="bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-950 pt-32 pb-16">
       <div className="max-w-7xl mx-auto px-6">
@@ -31,21 +33,31 @@ export default function ProductHero({ product }: { product: Product }) {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            <div className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-700 rounded-2xl overflow-hidden relative">
-              {/* Placeholder for product image */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-48 h-64 bg-gradient-to-b from-slate-300 to-slate-400 dark:from-slate-600 dark:to-slate-700 rounded-xl shadow-xl" />
-              </div>
-              {/* Certification badge */}
-              <div className="absolute top-4 left-4 flex gap-2">
+            <div className={`aspect-square bg-gradient-to-br ${gradient} rounded-2xl overflow-hidden relative flex items-center justify-center`}>
+              {/* Large faded category icon */}
+              <CategoryIcon className="w-32 h-32 text-white/15" />
+              {/* Overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              {/* Certification badges */}
+              <div className="absolute top-4 left-4 flex gap-2 flex-wrap">
                 {product.certifications.slice(0, 3).map((cert) => (
                   <span
                     key={cert}
-                    className="px-2 py-1 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm text-xs font-semibold text-slate-700 dark:text-slate-300 rounded-md shadow-sm"
+                    className="px-2 py-1 bg-white/90 dark:bg-white/80 backdrop-blur-sm text-xs font-semibold text-slate-700 rounded-md shadow-sm"
                   >
                     {cert}
                   </span>
                 ))}
+              </div>
+              {/* 3D badge */}
+              {product.has3DExperience && (
+                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/30">
+                  ✦ 3D Available
+                </div>
+              )}
+              {/* Product name overlay */}
+              <div className="absolute bottom-4 left-4 right-4">
+                <p className="text-white/90 text-sm font-semibold line-clamp-2 drop-shadow">{product.shortName || product.name}</p>
               </div>
             </div>
             {/* Thumbnail strip */}
