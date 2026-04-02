@@ -76,19 +76,27 @@ export default function ProductHero({ product }: { product: Product }) {
               {/* Animated Inner Glow */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05)_0%,transparent_70%)]" />
 
-              {/* Central Visual Element */}
+              {/* Product Hero Image */}
               <motion.div
-                animate={{ 
+                animate={{
                   y: [0, -10, 0],
                 }}
-                transition={{ 
+                transition={{
                   duration: 6,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="relative z-10"
+                className="relative z-10 w-full h-full flex items-center justify-center"
               >
-                <CategoryIcon className="w-48 h-48 text-white/10" />
+                {product.heroImage ? (
+                  <img
+                    src={product.heroImage}
+                    alt={product.name}
+                    className="max-w-full max-h-full object-contain drop-shadow-2xl"
+                  />
+                ) : (
+                  <CategoryIcon className="w-48 h-48 text-white/10" />
+                )}
               </motion.div>
               
               {/* Certification badges */}
@@ -121,16 +129,20 @@ export default function ProductHero({ product }: { product: Product }) {
 
             {/* Thumbnail strip */}
             <div className="flex gap-4">
-              {product.images.map((_, i) => (
+              {[product.heroImage, ...product.images].filter(Boolean).slice(0, 4).map((img, i) => (
                 <button
                   key={i}
-                  className={`w-20 h-20 rounded-2xl border transition-all duration-500 flex items-center justify-center group ${
-                    i === 0 
-                      ? "bg-blue-500/10 border-blue-500/30 shadow-[0_0_20px_rgba(59,130,246,0.1)]" 
+                  className={`w-20 h-20 rounded-2xl border transition-all duration-500 flex items-center justify-center overflow-hidden group ${
+                    i === 0
+                      ? "bg-blue-500/10 border-blue-500/30 shadow-[0_0_20px_rgba(59,130,246,0.1)]"
                       : "bg-white/5 border-white/10 hover:border-white/20"
                   }`}
                 >
-                  <CategoryIcon className={`w-8 h-8 transition-colors ${i === 0 ? "text-blue-400" : "text-white/20 group-hover:text-white/40"}`} />
+                  {img ? (
+                    <img src={img} alt={`${product.name} view ${i + 1}`} className="w-full h-full object-contain p-1" />
+                  ) : (
+                    <CategoryIcon className={`w-8 h-8 transition-colors ${i === 0 ? "text-blue-400" : "text-white/20 group-hover:text-white/40"}`} />
+                  )}
                 </button>
               ))}
             </div>
