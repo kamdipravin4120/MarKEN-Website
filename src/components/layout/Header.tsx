@@ -89,11 +89,9 @@ export default function Header() {
         <div 
           className={cn(
             "relative flex items-center justify-between h-16 lg:h-20 px-6 rounded-2xl transition-all duration-500 overflow-hidden",
-            scrolled ? "glass-morphism luminous-glow shadow-2xl" : "bg-transparent"
+            scrolled ? "bg-surface shadow-2xl border border-outline-variant" : "bg-transparent"
           )}
         >
-          {/* Subtle overlay for better legibility when scrolled */}
-          {scrolled && <div className="absolute inset-0 bg-surface/20 -z-10" />}
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 shrink-0 group">
