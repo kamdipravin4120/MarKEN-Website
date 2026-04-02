@@ -71,7 +71,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans bg-surface text-on-surface selection:bg-primary/30 selection:text-primary">
         <ThemeProvider>
           <Header />
-          <main className="flex-1 pt-20 lg:pt-28">{children}</main>
+          <main className="flex-1 pt-28 lg:pt-36">{children}</main>
           <Footer />
           <WhatsAppFAB />
         </ThemeProvider>
