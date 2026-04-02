@@ -1,0 +1,66 @@
+<h2>UI Audit — Issues Found in Current Build</h2>
+<p class="subtitle">Screenshots revealed these problems. Select which to fix for the Friday demo.</p>
+
+<div class="options" data-multiselect>
+
+  <div class="option" data-choice="hero" onclick="toggleSelect(this)" style="border-left: 4px solid #ef4444;">
+    <div class="letter" style="background:#ef4444;">!</div>
+    <div class="content">
+      <h3>CRITICAL: Hero Section Nearly Invisible</h3>
+      <p>Light blue-50 gradient on white = almost no contrast. Hero text, CTAs, trust badges, and the refrigerator illustration are barely visible. The entire above-the-fold is broken.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="product-hero" onclick="toggleSelect(this)" style="border-left: 4px solid #ef4444;">
+    <div class="letter" style="background:#ef4444;">!</div>
+    <div class="content">
+      <h3>CRITICAL: Product Page Hero — Empty White Space</h3>
+      <p>Product hero shows blank white space where images should be. No visual anchor. The product name and CTA are lost.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="no-images" onclick="toggleSelect(this)" style="border-left: 4px solid #f59e0b;">
+    <div class="letter" style="background:#f59e0b;">⚡</div>
+    <div class="content">
+      <h3>HIGH: No Product Images Anywhere</h3>
+      <p>All product cards and hero sections show empty gray gradients. Need styled placeholders with icons and category-colored gradients that look intentional, not broken.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="categories-bland" onclick="toggleSelect(this)" style="border-left: 4px solid #f59e0b;">
+    <div class="letter" style="background:#f59e0b;">⚡</div>
+    <div class="content">
+      <h3>HIGH: Homepage Category Cards Look Empty</h3>
+      <p>6 category cards have bare gray placeholders. Need visual identity — icons, colored gradients per category, or styled illustrations.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="stats-invisible" onclick="toggleSelect(this)" style="border-left: 4px solid #f59e0b;">
+    <div class="letter" style="background:#f59e0b;">⚡</div>
+    <div class="content">
+      <h3>HIGH: Stats Section Low Contrast on Light Theme</h3>
+      <p>The stats counters (25+, 400+, 20K+) are hard to read on light background. These are key trust signals — they need to pop.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="products-index" onclick="toggleSelect(this)" style="border-left: 4px solid #3b82f6;">
+    <div class="letter" style="background:#3b82f6;">+</div>
+    <div class="content">
+      <h3>MEDIUM: Products Index and Category Pages Need Visual Weight</h3>
+      <p>Text-only product cards with no differentiation. Need category-colored accents, icons, and better card styling.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="header-spacing" onclick="toggleSelect(this)" style="border-left: 4px solid #94a3b8;">
+    <div class="letter" style="background:#94a3b8;">~</div>
+    <div class="content">
+      <h3>LOW: Content May Start Behind Fixed Header</h3>
+      <p>Pages need enough top padding to account for the fixed header + top bar height.</p>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top: 2rem; padding: 1rem; background: rgba(59, 130, 246, 0.08); border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.2);">
+  <p style="margin: 0; font-size: 0.9rem;"><strong>My recommendation:</strong> Fix ALL items. The critical + high issues are ~80% of visual impact. Click to select what you want prioritized, or just tell me in the terminal.</p>
+</div>

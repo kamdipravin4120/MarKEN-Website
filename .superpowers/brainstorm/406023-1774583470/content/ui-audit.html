@@ -1,0 +1,82 @@
+<h2>UI Audit — Current Issues Found</h2>
+<p class="subtitle">Screenshots revealed these problems across all pages. Select which areas to prioritize for the Friday demo.</p>
+
+<div class="options" data-multiselect>
+
+  <div class="option" data-choice="hero" onclick="toggleSelect(this)" style="border-left: 4px solid #ef4444;">
+    <div class="letter" style="background:#ef4444;">!</div>
+    <div class="content">
+      <h3>CRITICAL: Hero Section Nearly Invisible</h3>
+      <p>Light blue-50 gradient on white = almost no contrast. Hero text, CTAs, trust badges, and the refrigerator illustration are barely visible. The entire above-the-fold experience looks broken. <strong>This is the #1 issue — the first thing anyone sees.</strong></p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="product-hero" onclick="toggleSelect(this)" style="border-left: 4px solid #ef4444;">
+    <div class="letter" style="background:#ef4444;">!</div>
+    <div class="content">
+      <h3>CRITICAL: Product Page Hero — Empty White Space</h3>
+      <p>The product hero section shows mostly blank white space where product images should be. No visual anchor. The "Launch 3D Experience" CTA and product name are lost in whitespace. Same contrast problem as homepage hero.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="no-images" onclick="toggleSelect(this)" style="border-left: 4px solid #f59e0b;">
+    <div class="letter" style="background:#f59e0b;">⚡</div>
+    <div class="content">
+      <h3>HIGH: No Product Images Anywhere</h3>
+      <p>Category cards, product cards, hero sections all show empty gray gradients. For a demo, we need either: placeholder medical equipment illustrations, gradient patterns with icons, or styled "image coming soon" cards that don't look broken.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="categories-bland" onclick="toggleSelect(this)" style="border-left: 4px solid #f59e0b;">
+    <div class="letter" style="background:#f59e0b;">⚡</div>
+    <div class="content">
+      <h3>HIGH: Homepage Category Cards Look Empty</h3>
+      <p>The 6 category cards have bare gray gradient placeholders with tiny "X products" text. They need visual identity — icons, colored gradients per category, or styled illustrations to make them look intentional rather than broken.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="stats-invisible" onclick="toggleSelect(this)" style="border-left: 4px solid #f59e0b;">
+    <div class="letter" style="background:#f59e0b;">⚡</div>
+    <div class="content">
+      <h3>HIGH: Stats Section Invisible on Light Theme</h3>
+      <p>The stats counters (25+, 400+, 20K+) appear to have very low contrast on the light slate-50 background. The numbers should pop — they're key trust signals.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="why-marken" onclick="toggleSelect(this)" style="border-left: 4px solid #3b82f6;">
+    <div class="letter" style="background:#3b82f6;">+</div>
+    <div class="content">
+      <h3>MEDIUM: WhyMarKEN Section Not Visible in Screenshot</h3>
+      <p>The section might be rendering with insufficient contrast or spacing. Needs verification and potential visual enhancement.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="products-index" onclick="toggleSelect(this)" style="border-left: 4px solid #3b82f6;">
+    <div class="letter" style="background:#3b82f6;">+</div>
+    <div class="content">
+      <h3>MEDIUM: Products Index Page — Dense but Functional</h3>
+      <p>The /products page shows all categories with product cards. Layout works but cards are text-only with no visual differentiation. Could benefit from category-colored accents and better card styling.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="category-cards" onclick="toggleSelect(this)" style="border-left: 4px solid #3b82f6;">
+    <div class="letter" style="background:#3b82f6;">+</div>
+    <div class="content">
+      <h3>MEDIUM: Category Page Cards Need Visual Polish</h3>
+      <p>The /products/blood-bank-equipment page shows 9 product cards with gray placeholders and certification badges. Structure is good but needs visual weight — icons, colored accents, or styled placeholders.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="header-spacing" onclick="toggleSelect(this)" style="border-left: 4px solid #94a3b8;">
+    <div class="letter" style="background:#94a3b8;">~</div>
+    <div class="content">
+      <h3>LOW: Header Top Bar Visible, Main Content Starts Behind It</h3>
+      <p>Content may need more top padding to account for the fixed header. Minor spacing issue.</p>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top: 2rem; padding: 1rem; background: rgba(59, 130, 246, 0.08); border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.2);">
+  <p style="margin: 0; font-size: 0.9rem;"><strong>Recommendation:</strong> Fix ALL critical + high items. They represent ~80% of visual impact for the Friday demo. Select the ones you want to prioritize.</p>
+</div>
