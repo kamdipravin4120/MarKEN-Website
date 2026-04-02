@@ -30,7 +30,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-surface pt-20">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-surface pt-32">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[160px] -translate-y-1/2 translate-x-1/4" />
@@ -157,7 +157,7 @@ export default function HeroSection() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 1.2, duration: 1 }}
-                  className="absolute top-[25%] left-[5%] p-4 bg-surface/80 backdrop-blur-xl rounded-2xl border border-outline-variant shadow-2xl z-20 flex items-center gap-3"
+                  className="absolute top-[30%] left-[5%] p-4 bg-surface/80 backdrop-blur-xl rounded-2xl border border-outline-variant shadow-2xl z-20 flex items-center gap-3"
                 >
                   <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
                     <Beaker className="w-5 h-5" />
