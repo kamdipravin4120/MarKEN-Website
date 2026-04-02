@@ -1,33 +1,19 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { bloodBankRefrigerator } from "@/data/products";
-
-const Product3DViewer = dynamic(() => import("@/components/3d/Product3DViewer"), {
-  ssr: false,
-  loading: () => (
-    <div className="aspect-[4/3] lg:aspect-[16/10] bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 rounded-2xl flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto" />
-        <p className="mt-4 text-sm text-slate-500 dark:text-slate-400 font-medium">Loading 3D Experience...</p>
-      </div>
-    </div>
-  ),
-});
 
 const product = bloodBankRefrigerator;
 
 export default function BBR3DExperience() {
   return (
-    <div className="pt-28 pb-20 bg-white dark:bg-slate-950">
+    <div className="pb-20 bg-white dark:bg-slate-950">
       <div className="max-w-7xl mx-auto px-6">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm text-slate-400 dark:text-slate-500 mb-6">
           <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
-          <span>/</span>
-          <Link href="/3d-experience" className="hover:text-blue-600 transition-colors">3D Experience</Link>
           <span>/</span>
           <span className="text-slate-700 dark:text-slate-200 font-medium">{product.name}</span>
         </nav>
@@ -36,25 +22,44 @@ export default function BBR3DExperience() {
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
             {product.name}
-            <span className="text-blue-600"> — 3D Interactive View</span>
+            <span className="text-blue-600"> — Product Showcase</span>
           </h1>
           <p className="mt-2 text-slate-500 dark:text-slate-400 max-w-2xl">
-            Explore every detail of the {product.name}. Click hotspots to learn about key components, or take a guided tour through all features.
+            Explore the {product.name} in detail. Discover key components, specifications, and engineering details.
           </p>
         </div>
 
-        {/* 3D Viewer */}
-        <Product3DViewer
-          hotspots={product.hotspots || []}
-          productName={product.name}
-          modelUrl="/models/refrigerator.glb"
-        />
+        {/* Product Image Showcase */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative aspect-[16/10] bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-900 dark:to-slate-800 rounded-3xl overflow-hidden flex items-center justify-center p-12 mb-4"
+        >
+          <img
+            src={product.heroImage}
+            alt={product.name}
+            className="max-w-full max-h-full object-contain drop-shadow-2xl"
+          />
+
+          {/* Floating certification badges */}
+          <div className="absolute top-6 left-6 flex gap-2 flex-wrap">
+            {product.certifications.slice(0, 3).map((cert) => (
+              <span
+                key={cert}
+                className="px-3 py-1.5 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border border-slate-200 dark:border-slate-700 text-[11px] font-bold tracking-wider uppercase text-slate-700 dark:text-slate-300 rounded-lg shadow-sm"
+              >
+                {cert}
+              </span>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Below-viewer content */}
         <div className="mt-12 grid md:grid-cols-2 gap-8">
           {/* Hotspot legend */}
           <div>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Interactive Hotspots</h3>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Key Features</h3>
             <div className="space-y-3">
               {product.hotspots?.map((hotspot, i) => (
                 <div key={hotspot.id} className="flex gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">

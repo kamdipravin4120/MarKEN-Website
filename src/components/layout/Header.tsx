@@ -64,7 +64,7 @@ const navigation = [
   },
   { label: "Resources", href: "/resources" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/contact/get-quote" },
 ];
 
 export default function Header() {
@@ -190,7 +190,7 @@ export default function Header() {
             </div>
             
             <Link
-              href="/contact?type=quote"
+              href="/contact/get-quote"
               className="px-6 py-2.5 bg-gradient-to-r from-primary-dim to-primary text-on-primary text-sm font-bold rounded-xl hover:scale-105 transition-all shadow-lg pulse-radiance group flex items-center gap-2"
             >
               <span>Get Quote</span>
@@ -234,7 +234,7 @@ export default function Header() {
                     <span className="text-lg font-medium">+91 91 3030 5959</span>
                  </div>
                  <Link
-                  href="/contact?type=quote"
+                  href="/contact/get-quote"
                   className="block w-full py-5 bg-primary text-on-primary text-center text-xl font-bold rounded-2xl shadow-xl"
                   onClick={() => setMobileOpen(false)}
                 >
