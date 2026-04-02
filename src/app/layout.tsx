@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Manrope, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -7,8 +7,13 @@ import WhatsAppFAB from "@/components/ui/WhatsAppFAB";
 import OrganizationSchema from "@/components/seo/OrganizationSchema";
 import ThemeProvider from "@/components/ui/ThemeProvider";
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin"],
+});
+
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
 });
 
@@ -59,11 +64,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
+    <html lang="en" className={`${manrope.variable} ${jakarta.variable} h-full antialiased dark`} suppressHydrationWarning>
       <head>
         <OrganizationSchema />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-[var(--color-surface)] text-[var(--color-text-body)]">
+      <body className="min-h-full flex flex-col font-sans bg-surface text-on-surface selection:bg-primary/30 selection:text-primary">
         <ThemeProvider>
           <Header />
           <main className="flex-1 pt-[72px] lg:pt-[100px]">{children}</main>

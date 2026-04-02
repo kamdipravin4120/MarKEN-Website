@@ -1,148 +1,222 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Shield, Download, Box } from "lucide-react";
+import { ArrowRight, Shield, Download, Box, ChevronRight } from "lucide-react";
 import type { Product } from "@/types";
 import { getCategoryStyle } from "@/lib/category-styles";
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.2, 0.8, 0.2, 1] as const,
+    },
+  },
+};
+
 export default function ProductHero({ product }: { product: Product }) {
   const { icon: CategoryIcon, gradient } = getCategoryStyle(product.category);
+  
   return (
-    <section className="bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-950 pt-32 pb-16">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="relative pt-32 pb-20 bg-[#060E20] overflow-hidden">
+      {/* Background Ambience */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-600/10 blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[-5%] w-[30%] h-[30%] rounded-full bg-indigo-600/10 blur-[100px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm text-slate-400 dark:text-slate-500 mb-8">
-          <Link href="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Home</Link>
-          <span>/</span>
-          <Link href="/products" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Products</Link>
-          <span>/</span>
+        <motion.nav 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-2 text-xs font-medium tracking-wide uppercase mb-12"
+        >
+          <Link href="/" className="text-white/40 hover:text-white transition-colors">Home</Link>
+          <ChevronRight className="w-3 h-3 text-white/20" />
+          <Link href="/products" className="text-white/40 hover:text-white transition-colors">Products</Link>
+          <ChevronRight className="w-3 h-3 text-white/20" />
           <Link
             href={`/products/${product.category}`}
-            className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors capitalize"
+            className="text-white/40 hover:text-white transition-colors"
           >
             {product.category.replace(/-/g, " ")}
           </Link>
-          <span>/</span>
-          <span className="text-slate-700 dark:text-slate-300 font-medium">{product.shortName}</span>
-        </nav>
+          <ChevronRight className="w-3 h-3 text-white/20" />
+          <span className="text-blue-400">{product.shortName}</span>
+        </motion.nav>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid lg:grid-cols-2 gap-16 items-start"
+        >
           {/* Image gallery */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-          >
-            <div className={`aspect-square bg-gradient-to-br ${gradient} rounded-2xl overflow-hidden relative flex items-center justify-center`}>
-              {/* Large faded category icon */}
-              <CategoryIcon className="w-32 h-32 text-white/15" />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+          <motion.div variants={itemVariants} className="space-y-6">
+            <div className={`aspect-square glass-morphism rounded-3xl overflow-hidden relative flex items-center justify-center p-12 group`}>
+              {/* Category Gradient Background */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-700`} />
+              
+              {/* Animated Inner Glow */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05)_0%,transparent_70%)]" />
+
+              {/* Central Visual Element */}
+              <motion.div
+                animate={{ 
+                  y: [0, -10, 0],
+                }}
+                transition={{ 
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="relative z-10"
+              >
+                <CategoryIcon className="w-48 h-48 text-white/10" />
+              </motion.div>
+              
               {/* Certification badges */}
-              <div className="absolute top-4 left-4 flex gap-2 flex-wrap">
+              <div className="absolute top-6 left-6 flex gap-2 flex-wrap">
                 {product.certifications.slice(0, 3).map((cert) => (
                   <span
                     key={cert}
-                    className="px-2 py-1 bg-white/90 dark:bg-white/80 backdrop-blur-sm text-xs font-semibold text-slate-700 rounded-md shadow-sm"
+                    className="px-3 py-1 bg-white/5 backdrop-blur-md border border-white/10 text-[10px] font-bold tracking-widest uppercase text-white/80 rounded-lg"
                   >
                     {cert}
                   </span>
                 ))}
               </div>
+
               {/* 3D badge */}
               {product.has3DExperience && (
-                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/30">
-                  ✦ 3D Available
+                <div className="absolute top-6 right-6 px-4 py-2 bg-blue-500/10 backdrop-blur-md border border-blue-500/20 text-blue-400 text-[10px] font-bold tracking-widest uppercase rounded-full group-hover:bg-blue-500/20 transition-all duration-300 cursor-help">
+                  ✦ Interative 3D
                 </div>
               )}
-              {/* Product name overlay */}
-              <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-white/90 text-sm font-semibold line-clamp-2 drop-shadow">{product.shortName || product.name}</p>
+
+              {/* Floating Product Tag */}
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="glass-morphism p-4 rounded-xl border-white/5">
+                   <p className="text-white/60 text-[10px] font-bold tracking-widest uppercase mb-1">Precision Instrument</p>
+                   <p className="text-white font-medium text-sm line-clamp-1">{product.shortName || product.name}</p>
+                </div>
               </div>
             </div>
+
             {/* Thumbnail strip */}
-            <div className="mt-3 flex gap-2 overflow-x-auto">
+            <div className="flex gap-4">
               {product.images.map((_, i) => (
                 <button
                   key={i}
-                  className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-lg border-2 border-transparent hover:border-blue-500 transition-colors shrink-0"
-                />
+                  className={`w-20 h-20 rounded-2xl border transition-all duration-500 flex items-center justify-center group ${
+                    i === 0 
+                      ? "bg-blue-500/10 border-blue-500/30 shadow-[0_0_20px_rgba(59,130,246,0.1)]" 
+                      : "bg-white/5 border-white/10 hover:border-white/20"
+                  }`}
+                >
+                  <CategoryIcon className={`w-8 h-8 transition-colors ${i === 0 ? "text-blue-400" : "text-white/20 group-hover:text-white/40"}`} />
+                </button>
               ))}
             </div>
           </motion.div>
 
           {/* Product info */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-          >
-            <div className="flex items-center gap-2 mb-3">
-              <Shield className="w-4 h-4 text-green-600" />
-              <span className="text-sm font-semibold text-green-700">
-                {product.certifications.join(" • ")}
+          <motion.div variants={itemVariants} className="pt-4">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-2 px-3 py-1 bg-green-500/10 border border-green-500/20 rounded-full">
+                <Shield className="w-3.5 h-3.5 text-green-400" />
+                <span className="text-[10px] font-bold tracking-widest uppercase text-green-400">
+                  Fully Certified
+                </span>
+              </div>
+              <span className="text-white/20 text-xs">•</span>
+              <span className="text-white/40 text-[10px] font-bold tracking-widest uppercase">
+                Stock ID: {product.slug.split("-")[0].toUpperCase()}
               </span>
             </div>
 
-            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-4 font-manrope">
               {product.name}
             </h1>
-            <p className="mt-2 text-lg text-blue-600 dark:text-blue-400 font-medium">{product.tagline}</p>
-            <p className="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">{product.description}</p>
+            <p className="text-xl md:text-2xl text-blue-400 font-medium mb-8 leading-tight">
+              {product.tagline}
+            </p>
+            <p className="text-white/60 text-lg leading-relaxed mb-10 max-w-xl">
+              {product.description}
+            </p>
 
             {/* Key specs preview */}
-            <div className="mt-6 grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4 mb-10">
               {product.specifications.slice(0, 4).map((spec) => (
-                <div key={spec.label} className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3">
-                  <p className="text-xs text-slate-400 dark:text-slate-500 font-medium">{spec.label}</p>
-                  <p className="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-0.5">{spec.value}</p>
+                <div key={spec.label} className="no-line-card p-5 group hover:bg-white/5 transition-colors">
+                  <p className="text-[10px] font-bold tracking-widest uppercase text-white/30 group-hover:text-blue-400/60 transition-colors mb-1">
+                    {spec.label}
+                  </p>
+                  <p className="text-lg font-bold text-white group-hover:translate-x-1 transition-transform inline-block">
+                    {spec.value}
+                  </p>
                 </div>
               ))}
             </div>
 
             {/* CTAs */}
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-4">
               <Link
                 href="/contact/get-quote"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/25"
+                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-500 transition-all duration-300 shadow-lg shadow-blue-600/20 overflow-hidden"
               >
-                Get Quote
-                <ArrowRight className="w-4 h-4" />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-white/20 to-blue-400/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                Get Technical Quote
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
+              
               {product.has3DExperience && (
                 <Link
                   href={`/3d-experience/${product.slug}`}
-                  className="inline-flex items-center gap-2 px-6 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-xl hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-colors"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/10 hover:border-white/20 hover:shadow-xl hover:shadow-white/5 transition-all duration-300"
                 >
-                  <Box className="w-4 h-4" />
-                  View in 3D
+                  <Box className="w-5 h-5 text-blue-400" />
+                  3D Visualization
                 </Link>
               )}
-              <button className="inline-flex items-center gap-2 px-6 py-3 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                <Download className="w-4 h-4" />
-                Brochure
+              
+              <button className="p-4 bg-white/5 border border-white/10 text-white rounded-2xl hover:bg-white/10 transition-all group">
+                <Download className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
               </button>
             </div>
 
-            {/* Quick contact */}
-            <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-500/10 border border-blue-100 dark:border-blue-500/20 rounded-xl">
-              <p className="text-sm text-blue-800 dark:text-blue-300">
-                <span className="font-semibold">Need help choosing?</span> Call{" "}
-                <a href="tel:+919130305959" className="underline font-semibold">
-                  +91 91 3030 5959
-                </a>{" "}
-                or{" "}
-                <a
-                  href="https://wa.me/919130305959"
-                  className="underline font-semibold text-green-700"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  WhatsApp us
-                </a>
-              </p>
+            {/* Support info */}
+            <div className="mt-12 pt-8 border-t border-white/5 flex items-center gap-6">
+               <div className="flex -space-x-3">
+                 {[1,2,3].map(i => (
+                   <div key={i} className="w-10 h-10 rounded-full border-2 border-[#060E20] bg-slate-800 flex items-center justify-center text-[10px] font-bold text-white/40">
+                     DR
+                   </div>
+                 ))}
+               </div>
+               <p className="text-white/40 text-sm">
+                 <span className="text-white font-medium">1,250+</span> clinics trust our {product.shortName || "equipment"}. 
+                 <Link href="/contact" className="ml-2 text-blue-400 hover:text-blue-300 underline underline-offset-4 transition-colors">Speak to an advisor</Link>
+               </p>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

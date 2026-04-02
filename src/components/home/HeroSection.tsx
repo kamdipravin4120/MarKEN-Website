@@ -1,144 +1,185 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Shield, Award, Globe } from "lucide-react";
+import { ArrowRight, Shield, Award, Globe, Zap, Beaker } from "lucide-react";
+import Hero3DCanvas from "./Hero3DCanvas";
 
 export default function HeroSection() {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.6, 
+        ease: [0.2, 0.8, 0.2, 1] as const
+      }
+    },
+  };
+
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 -mt-[72px] lg:-mt-[100px] pt-[72px] lg:pt-[100px]">
-      {/* Animated background grid */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-surface pt-20">
+      {/* Dynamic Background Elements */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[160px] -translate-y-1/2 translate-x-1/4" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[140px] translate-y-1/2 -translate-x-1/4" />
+        
+        {/* Subtle Grid Overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
+            backgroundImage: `linear-gradient(var(--color-primary) 1px, transparent 1px), linear-gradient(90deg, var(--color-primary) 1px, transparent 1px)`,
+            backgroundSize: '80px 80px'
           }}
         />
       </div>
 
-      {/* Gradient orbs */}
-      <div className="absolute top-1/4 -right-32 w-96 h-96 bg-blue-500/20 rounded-full blur-[128px]" />
-      <div className="absolute bottom-1/4 -left-32 w-96 h-96 bg-cyan-500/15 rounded-full blur-[128px]" />
-
-      <div className="relative max-w-7xl mx-auto px-6 py-24 lg:py-32">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Text */}
-          <div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 w-full">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Content Column */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col"
+          >
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-400/20 text-blue-300 rounded-full text-sm mb-6"
+              variants={itemVariants}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-surface-container-high/50 backdrop-blur-md rounded-full mb-8 w-fit border border-outline-variant"
             >
-              <Shield className="w-4 h-4" />
-              WHO PQS Prequalified • USFDA • CE • ISO 13485
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span className="text-xs font-bold text-primary uppercase tracking-[0.2em]">Pioneering Clinical Radiance</span>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
+              variants={itemVariants}
+              className="text-5xl md:text-7xl lg:text-8xl font-bold text-on-surface leading-[1.1] tracking-tight mb-8"
             >
-              Precision-Engineered
-              <br />
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-                Healthcare Solutions
+              Visionary <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">
+                Medical Precision
               </span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mt-6 text-lg text-slate-300 max-w-lg leading-relaxed"
+              variants={itemVariants}
+              className="text-xl text-on-surface-variant max-w-xl leading-relaxed mb-10"
             >
-              India&apos;s trusted manufacturer of medical cold chain, blood bank equipment, and hospital infrastructure. Serving 20,000+ healthcare facilities across the nation.
+              Engineered for absolute reliability. MarKEN defines the next era of healthcare infrastructure with intelligent cold chain and critical care solutions.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="mt-8 flex flex-wrap gap-4"
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-5"
             >
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40"
+                className="px-8 py-4 bg-primary text-on-primary font-bold rounded-full hover:bg-white transition-all duration-300 luminous-glow flex items-center justify-center gap-3 group"
               >
-                Explore Products
-                <ArrowRight className="w-4 h-4" />
+                Discover Solutions
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                href="/3d-experience/blood-bank-refrigerator"
-                className="inline-flex items-center gap-2 px-6 py-3.5 border-2 border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all"
+                href="/3d-experience"
+                className="px-8 py-4 bg-surface-container-highest/50 backdrop-blur-md text-on-surface font-semibold rounded-full hover:bg-surface-bright transition-all duration-300 flex items-center justify-center gap-3 border border-outline-variant"
               >
+                <Zap className="w-5 h-5 text-tertiary" />
                 3D Experience
               </Link>
             </motion.div>
 
-            {/* Trust badges */}
+            {/* Verification Badges */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="mt-12 flex items-center gap-8 text-sm text-slate-400"
+              variants={itemVariants}
+              className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-8 pt-10 border-t border-outline-variant"
             >
-              <div className="flex items-center gap-2">
-                <Award className="w-5 h-5 text-blue-400" />
-                <span>25+ Years</span>
+              <div className="flex flex-col gap-1">
+                <span className="text-2xl font-bold text-on-surface font-display tracking-tight">25+</span>
+                <span className="text-xs text-on-surface-variant uppercase tracking-widest font-bold">Years of Trust</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Globe className="w-5 h-5 text-blue-400" />
-                <span>400+ Products</span>
+              <div className="flex flex-col gap-1">
+                <span className="text-2xl font-bold text-on-surface font-display tracking-tight">400+</span>
+                <span className="text-xs text-on-surface-variant uppercase tracking-widest font-bold">Global Assets</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-blue-400" />
-                <span>10+ WHO PQS</span>
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-tertiary" />
+                  <span className="text-xs font-bold text-on-surface uppercase tracking-widest leading-none">WHO Prequalified</span>
+                </div>
+                <span className="text-[10px] text-on-surface-variant uppercase tracking-tighter">Certified Excellence</span>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
 
-          {/* Hero visual */}
+          {/* Visual Column - The Luminous Lab Card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="relative hidden lg:block"
+            transition={{ duration: 1.2, ease: [0.2, 0.8, 0.2, 1] as const }}
+            className="relative lg:block"
           >
-            <div className="relative aspect-square max-w-lg mx-auto">
-              {/* Glow backdrop */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/10 rounded-3xl blur-xl" />
-
-              {/* Product showcase card */}
-              <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 shadow-none rounded-3xl p-8 h-full flex flex-col items-center justify-center">
-                {/* Placeholder for product image/3D preview */}
-                <div className="w-48 h-64 bg-gradient-to-b from-slate-300 to-slate-400 rounded-xl shadow-2xl relative">
-                  {/* Simplified refrigerator illustration */}
-                  <div className="absolute inset-2 bg-gradient-to-b from-blue-100 to-blue-200 rounded-lg">
-                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-8 h-1.5 bg-slate-700 rounded-full" />
-                    <div className="absolute top-6 inset-x-3 bottom-3 bg-white/60 rounded border border-blue-300/30">
-                      {/* Shelf lines */}
-                      <div className="absolute top-1/4 inset-x-1 h-px bg-slate-300" />
-                      <div className="absolute top-2/4 inset-x-1 h-px bg-slate-300" />
-                      <div className="absolute top-3/4 inset-x-1 h-px bg-slate-300" />
-                    </div>
+            <div className="relative h-[500px] lg:h-[700px] w-full flex items-center justify-center">
+              {/* Dynamic Glow Background */}
+              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 aspect-square max-w-lg bg-primary/20 rounded-full blur-[120px] opacity-60" />
+              
+              <div className="relative z-10 w-full h-full max-w-2xl transform lg:scale-110">
+                <Hero3DCanvas />
+                
+                {/* Floating Micro-UI element */}
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1, duration: 1 }}
+                  className="absolute bottom-[20%] right-[10%] p-4 bg-surface/80 backdrop-blur-xl rounded-2xl border border-outline-variant shadow-2xl z-20 flex items-center gap-3"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                    <Zap className="w-5 h-5" />
                   </div>
-                  {/* Temperature display */}
-                  <div className="absolute -top-3 -right-3 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-lg shadow-lg">
-                    +4°C
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Efficiency</span>
+                    <span className="text-sm font-bold text-on-surface">Ultra-Low Power</span>
                   </div>
-                </div>
+                </motion.div>
 
-                <p className="mt-6 text-sm text-slate-400 text-center">
-                  Blood Bank Refrigerator
-                  <br />
-                  <span className="text-blue-400 font-medium">Explore in 3D →</span>
-                </p>
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.2, duration: 1 }}
+                  className="absolute top-[25%] left-[5%] p-4 bg-surface/80 backdrop-blur-xl rounded-2xl border border-outline-variant shadow-2xl z-20 flex items-center gap-3"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+                    <Beaker className="w-5 h-5" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Precision</span>
+                    <span className="text-sm font-bold text-on-surface">Digital Control</span>
+                  </div>
+                </motion.div>
               </div>
+
+              {/* Decorative rings */}
+              <motion.div 
+                animate={{ rotate: 360, scale: [1, 1.1, 1] }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 border border-primary/10 rounded-full border-dashed scale-75 opacity-30"
+              />
+              <motion.div 
+                animate={{ rotate: -360, scale: [1, 1.05, 1] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-10 border border-tertiary/10 rounded-[60px] border-dashed scale-90 opacity-20"
+              />
             </div>
           </motion.div>
         </div>

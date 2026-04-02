@@ -1,105 +1,134 @@
-import type { Metadata } from "next";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import GetQuoteForm from "@/components/contact/GetQuoteForm";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Get a Quote — Medical Equipment",
-  description:
-    "Request a customized quote for MarKEN medical equipment. Blood bank refrigerators, cold chain solutions, hospital furniture. Response within 24 hours.",
-};
+import { Phone, Mail, MapPin, Clock, ShieldCheck, Award, Microscope, Globe } from "lucide-react";
+import GetQuoteForm from "@/components/contact/GetQuoteForm";
+import LuminousParticles from "@/components/ui/LuminousParticles";
+import { motion } from "framer-motion";
 
 export default function GetQuotePage() {
   return (
-    <div className="pt-28 pb-20 bg-slate-50">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900">Get a Quote</h1>
-          <p className="mt-3 text-slate-500 max-w-xl mx-auto">
-            Tell us about your requirements and our team will get back to you within 24 hours with a customized proposal.
-          </p>
-        </div>
+    <main className="min-h-screen bg-[#060E20] pt-28 pb-20 relative overflow-hidden">
+      {/* Ambient backgrounds */}
+      <LuminousParticles count={30} />
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-600/5 blur-[150px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <header className="max-w-3xl mx-auto text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="text-[10px] font-bold tracking-[0.2em] text-blue-400 uppercase">
+              Operational Interface
+            </span>
+            <h1 className="mt-4 text-4xl md:text-5xl font-bold text-white font-manrope">
+              Laboratory Quote System
+            </h1>
+            <p className="mt-6 text-white/40 text-lg max-w-xl mx-auto leading-relaxed">
+              Configure your clinical hardware requirements and receive a precision-engineered technical proposal within 24 hours.
+            </p>
+          </motion.div>
+        </header>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Form */}
-          <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-6 md:p-8">
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+          {/* Main Form Area */}
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-8 glass-morphism p-8 md:p-12 rounded-[2.5rem] border border-white/5 shadow-2xl relative"
+          >
+            {/* Top accent */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent rounded-full" />
+            
             <GetQuoteForm />
-          </div>
+          </motion.div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            <div className="bg-white rounded-2xl border border-slate-200 p-6">
-              <h3 className="font-bold text-slate-900 mb-4">Contact Information</h3>
-              <div className="space-y-4 text-sm">
-                <a href="tel:+919130305959" className="flex items-start gap-3 text-slate-600 hover:text-blue-600 transition-colors">
-                  <Phone className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
+          {/* Collateral Info / Sidebar */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="lg:col-span-4 space-y-6"
+          >
+            {/* Contact Card */}
+            <div className="no-line-card p-8 rounded-3xl border border-white/5 bg-white/[0.02]">
+              <h3 className="text-sm font-bold text-white/60 mb-6 uppercase tracking-widest">
+                Protocol Channels
+              </h3>
+              <div className="space-y-6">
+                <a href="tel:+919130305959" className="flex items-start gap-4 group">
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                    <Phone className="w-4 h-4" />
+                  </div>
                   <div>
-                    <p className="font-semibold">+91 91 3030 5959</p>
-                    <p className="text-xs text-slate-400">Sales enquiries</p>
+                    <p className="text-white font-bold transition-colors group-hover:text-blue-400">+91 91 3030 5959</p>
+                    <p className="text-[10px] text-white/20 uppercase tracking-tighter">Global Sales Inquiries</p>
                   </div>
                 </a>
-                <a href="mailto:info@markenworld.com" className="flex items-start gap-3 text-slate-600 hover:text-blue-600 transition-colors">
-                  <Mail className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
+                
+                <a href="mailto:info@markenworld.com" className="flex items-start gap-4 group">
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                    <Mail className="w-4 h-4" />
+                  </div>
                   <div>
-                    <p className="font-semibold">info@markenworld.com</p>
-                    <p className="text-xs text-slate-400">General enquiries</p>
+                    <p className="text-white font-bold transition-colors group-hover:text-blue-400">info@markenworld.com</p>
+                    <p className="text-[10px] text-white/20 uppercase tracking-tighter">Engineering Support</p>
                   </div>
                 </a>
-                <div className="flex items-start gap-3 text-slate-600">
-                  <MapPin className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold">Factory: Nashik, Maharashtra</p>
-                    <p className="text-xs text-slate-400">Sales Office: Noida, UP</p>
-                  </div>
+              </div>
+
+              {/* WhatsApp Callout */}
+              <div className="mt-10 p-6 rounded-2xl bg-green-500/10 border border-green-500/20 group cursor-pointer hover:bg-green-500/20 transition-all">
+                <div className="flex items-center gap-3 mb-4">
+                   <div className="w-8 h-8 rounded-lg bg-green-500 flex items-center justify-center">
+                      <Globe className="w-4 h-4 text-white" />
+                   </div>
+                   <span className="text-xs font-bold text-green-400 uppercase tracking-wider">Fast-track Response</span>
                 </div>
-                <div className="flex items-start gap-3 text-slate-600">
-                  <Clock className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold">Mon – Sat, 9 AM – 6 PM IST</p>
-                    <p className="text-xs text-slate-400">24hr response guarantee</p>
-                  </div>
-                </div>
+                <p className="text-xs text-white/40 mb-4 leading-relaxed italic">
+                  "Initiate direct encrypted session with our technical team via WhatsApp for instant documentation sharing."
+                </p>
+                <a
+                  href="https://wa.me/919130305959?text=Hi%20MarKEN%2C%20I%27d%20like%20to%20get%20a%20quote%20for%20medical%20equipment"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-white group-hover:text-green-400 transition-colors"
+                >
+                  Open WhatsApp Protocol <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </a>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white">
-              <h3 className="font-bold mb-2">Prefer WhatsApp?</h3>
-              <p className="text-sm text-green-100 mb-4">
-                Chat with our sales team instantly.
-              </p>
-              <a
-                href="https://wa.me/919130305959?text=Hi%20MarKEN%2C%20I%27d%20like%20to%20get%20a%20quote%20for%20medical%20equipment"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full text-center px-4 py-2.5 bg-white text-green-700 font-semibold rounded-lg hover:bg-green-50 transition-colors"
-              >
-                Chat on WhatsApp
-              </a>
+            {/* Certifications / Trust Footprint */}
+            <div className="p-4 grid grid-cols-2 gap-4">
+               <div className="flex flex-col items-center p-4 rounded-2xl bg-white/5 border border-white/5 text-center">
+                  <ShieldCheck className="w-6 h-6 text-blue-400/60 mb-2" />
+                  <span className="text-[8px] font-bold text-white/20 uppercase">WHO PQS Certified</span>
+               </div>
+               <div className="flex flex-col items-center p-4 rounded-2xl bg-white/5 border border-white/5 text-center">
+                  <Award className="w-6 h-6 text-blue-400/60 mb-2" />
+                  <span className="text-[8px] font-bold text-white/20 uppercase">USFDA Compliant</span>
+               </div>
+               <div className="flex flex-col items-center p-4 rounded-2xl bg-white/5 border border-white/5 text-center">
+                  <Microscope className="w-6 h-6 text-blue-400/60 mb-2" />
+                  <span className="text-[8px] font-bold text-white/20 uppercase">NABL Accredited</span>
+               </div>
+               <div className="flex flex-col items-center p-4 rounded-2xl bg-white/5 border border-white/5 text-center">
+                  <Globe className="w-6 h-6 text-blue-400/60 mb-2" />
+                  <span className="text-[8px] font-bold text-white/20 uppercase">Export Ready</span>
+               </div>
             </div>
-
-            <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6">
-              <h3 className="font-bold text-blue-900 mb-3">Why Choose MarKEN?</h3>
-              <ul className="space-y-2 text-sm text-blue-800">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
-                  25+ years of manufacturing expertise
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
-                  WHO PQS, CE, USFDA certified
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
-                  500+ service centers pan-India
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
-                  AIIMS, ICMR, and government trusted
-                </li>
-              </ul>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
+
+const ArrowRight = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M5 12h14M12 5l7 7-7 7" />
+  </svg>
+);

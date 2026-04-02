@@ -1,62 +1,90 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FileText, Download } from "lucide-react";
+import { FileText, Download, FileCode, Beaker, ShieldCheck } from "lucide-react";
 import type { Download as DownloadType } from "@/types";
 
-const typeColors: Record<string, string> = {
-  brochure: "bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-400",
-  manual: "bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-400",
-  certificate: "bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400",
-  datasheet: "bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-400",
+const typeIcons: Record<string, any> = {
+  brochure: FileText,
+  manual: Beaker,
+  certificate: ShieldCheck,
+  datasheet: FileCode,
 };
 
 export default function ProductDownloads({ downloads }: { downloads: DownloadType[] }) {
   return (
-    <section className="py-16 bg-slate-50 dark:bg-slate-900">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-10">
-          <span className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
-            Downloads
+    <section className="py-24 bg-[#060E20] relative overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 blur-[120px] rounded-full" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-16">
+          <span className="text-[10px] font-bold tracking-[0.2em] text-blue-400 uppercase">
+            Technical Repository
           </span>
-          <h2 className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">
-            Technical Documents
+          <h2 className="mt-4 text-4xl font-bold text-white font-manrope">
+            Documentation & Downloads
           </h2>
+          <div className="mt-6 w-12 h-1 bg-blue-500/30 mx-auto rounded-full" />
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-          {downloads.map((download, i) => (
-            <motion.a
-              key={download.title}
-              href={download.url}
-              download
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group flex flex-col items-center p-5 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md transition-all"
-            >
-              <div className="w-12 h-12 bg-slate-100 dark:bg-slate-700 rounded-xl flex items-center justify-center group-hover:bg-blue-50 dark:group-hover:bg-blue-500/10 transition-colors">
-                <FileText className="w-6 h-6 text-slate-400 dark:text-slate-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
-              </div>
-              <p className="mt-3 text-sm font-semibold text-slate-800 dark:text-slate-200 text-center line-clamp-2">
-                {download.title}
-              </p>
-              <span
-                className={`mt-2 text-xs font-medium px-2 py-0.5 rounded-full capitalize ${
-                  typeColors[download.type]
-                }`}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {downloads.map((download, i) => {
+            const Icon = typeIcons[download.type] || FileText;
+            return (
+              <motion.a
+                key={download.title}
+                href={download.url}
+                download
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: i * 0.1,
+                  ease: [0.2, 0.8, 0.2, 1] 
+                }}
+                className="group glass-morphism p-6 rounded-3xl border border-white/5 hover:border-blue-500/20 hover:bg-blue-500/5 transition-all duration-500"
               >
-                {download.type}
-              </span>
-              <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">{download.fileSize}</p>
-              <div className="mt-3 flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                <Download className="w-3 h-3" />
-                Download
-              </div>
-            </motion.a>
-          ))}
+                <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-blue-500/30 group-hover:bg-blue-500/10 transition-all duration-500 shadow-inner group-hover:shadow-[0_0_20px_rgba(59,130,246,0.1)]">
+                  <Icon className="w-7 h-7 text-white/40 group-hover:text-blue-400 transition-colors duration-500" />
+                </div>
+                
+                <div className="mt-6">
+                  <p className="text-[10px] font-bold tracking-widest uppercase text-white/30 mb-2">
+                    {download.type}
+                  </p>
+                  <h3 className="text-white font-bold text-sm leading-snug line-clamp-2 group-hover:text-blue-400 transition-colors duration-500">
+                    {download.title}
+                  </h3>
+                </div>
+
+                <div className="mt-8 flex items-center justify-between">
+                  <span className="text-[10px] text-white/20 font-mono tracking-tighter">
+                    {download.fileSize.toUpperCase()}
+                  </span>
+                  <div className="flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase text-blue-400 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                    <Download className="w-3.5 h-3.5" />
+                    Get File
+                  </div>
+                </div>
+              </motion.a>
+            );
+          })}
         </div>
+
+        {/* Support Section */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="mt-20 p-8 rounded-3xl border border-dashed border-white/10 text-center"
+        >
+          <p className="text-white/40 text-sm">
+            Looking for something else? Access our full 
+            <a href="/support" className="mx-2 text-white font-bold hover:text-blue-400 transition-colors border-b border-white/20 hover:border-blue-400">knowledge center</a> 
+            or request specific documentation.
+          </p>
+        </motion.div>
       </div>
     </section>
   );

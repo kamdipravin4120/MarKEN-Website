@@ -2,33 +2,57 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, HelpCircle } from "lucide-react";
 import type { FAQ } from "@/types";
 
 function FAQItem({ faq, isOpen, onClick }: { faq: FAQ; isOpen: boolean; onClick: () => void }) {
   return (
-    <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
+    <div className={`no-line-card overflow-hidden transition-all duration-500 ${isOpen ? "bg-white/[0.04] ring-1 ring-white/10" : "hover:bg-white/[0.02]"}`}>
       <button
         onClick={onClick}
-        className="w-full flex items-center justify-between p-5 text-left hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+        className="w-full flex items-center justify-between p-6 text-left group"
       >
-        <span className="text-sm font-semibold text-slate-800 dark:text-slate-200 pr-4">{faq.question}</span>
-        <ChevronDown
-          className={`w-5 h-5 text-slate-400 dark:text-slate-500 shrink-0 transition-transform ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
+        <div className="flex items-center gap-4">
+          <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-500 ${isOpen ? "bg-blue-500 text-white" : "bg-white/5 text-white/20 group-hover:text-white/40"}`}>
+            <HelpCircle className="w-4 h-4" />
+          </div>
+          <span className={`text-sm font-bold font-manrope transition-colors duration-500 ${isOpen ? "text-white" : "text-white/60 group-hover:text-white/80"}`}>
+            {faq.question}
+          </span>
+        </div>
+        <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${isOpen ? "bg-white/10 rotate-180" : "bg-transparent"}`}>
+          <ChevronDown
+            className={`w-4 h-4 transition-colors ${
+              isOpen ? "text-blue-400" : "text-white/20"
+            }`}
+          />
+        </div>
       </button>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            animate={{ 
+              height: "auto", 
+              opacity: 1,
+              transition: {
+                height: { duration: 0.4, ease: [0.2, 0.8, 0.2, 1] },
+                opacity: { duration: 0.25, delay: 0.1 }
+              }
+            }}
+            exit={{ 
+              height: 0, 
+              opacity: 0,
+              transition: {
+                height: { duration: 0.3, ease: [0.2, 0.8, 0.2, 1] },
+                opacity: { duration: 0.2 }
+              }
+            }}
           >
-            <div className="px-5 pb-5 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              {faq.answer}
+            <div className="px-6 pb-6 pl-14 pr-12 text-sm text-white/40 leading-relaxed">
+              <div className="pt-2 border-t border-white/5">
+                {faq.answer}
+              </div>
             </div>
           </motion.div>
         )}
@@ -41,18 +65,22 @@ export default function ProductFAQ({ faqs }: { faqs: FAQ[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-20 bg-white dark:bg-slate-950">
-      <div className="max-w-3xl mx-auto px-6">
-        <div className="text-center mb-10">
-          <span className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
-            FAQ
+    <section className="py-24 bg-[#060E20] relative">
+      {/* Top Divider */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-blue-500/50 to-transparent" />
+      
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-16">
+          <span className="text-[10px] font-bold tracking-[0.2em] text-blue-400 uppercase">
+            Information Hub
           </span>
-          <h2 className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
-            Frequently Asked Questions
+          <h2 className="mt-4 text-4xl font-bold text-white font-manrope">
+            Common Inquiries
           </h2>
+          <div className="mt-6 w-12 h-1 bg-blue-500/30 mx-auto rounded-full" />
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {faqs.map((faq, i) => (
             <FAQItem
               key={i}
@@ -61,6 +89,16 @@ export default function ProductFAQ({ faqs }: { faqs: FAQ[] }) {
               onClick={() => setOpenIndex(openIndex === i ? null : i)}
             />
           ))}
+        </div>
+
+        {/* Support link */}
+        <div className="mt-16 text-center">
+          <p className="text-white/20 text-xs text-center flex flex-col items-center gap-2">
+            Still have technical questions? 
+            <button className="text-white/60 hover:text-blue-400 font-bold transition-all underline underline-offset-4">
+              Consult our engineering team
+            </button>
+          </p>
         </div>
       </div>
     </section>

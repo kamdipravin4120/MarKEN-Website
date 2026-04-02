@@ -124,6 +124,31 @@ export interface NavItem {
   children?: NavItem[];
 }
 
+export interface Industry {
+  id: string;
+  slug: string;
+  name: string;
+  tagline: string;
+  description: string;
+  image: string;
+  icon: string;
+  keyProducts: string[]; // slugs
+  benefits: {
+    title: string;
+    description: string;
+  }[];
+  stats: {
+    label: string;
+    value: string;
+  }[];
+}
+
+export interface ResourceHeader {
+  title: string;
+  description: string;
+  category: "brochure" | "manual" | "certificate" | "datasheet" | "whitepaper";
+}
+
 export interface CompanyStats {
   years: number;
   products: number;
