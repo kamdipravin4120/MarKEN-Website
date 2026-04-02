@@ -92,7 +92,7 @@ export default function HeroSection() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                href="/3d-experience"
+                href="/3d-experience/blood-bank-refrigerator"
                 className="px-8 py-4 bg-surface-container-highest/50 backdrop-blur-md text-on-surface font-semibold rounded-full hover:bg-surface-bright transition-all duration-300 flex items-center justify-center gap-3 border border-outline-variant"
               >
                 <Zap className="w-5 h-5 text-tertiary" />

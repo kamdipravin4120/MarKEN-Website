@@ -45,7 +45,7 @@ const navigation = [
   },
   {
     label: "3D Experience",
-    href: "/3d-experience",
+    href: "/3d-experience/blood-bank-refrigerator",
   },
   {
     label: "Industries",
