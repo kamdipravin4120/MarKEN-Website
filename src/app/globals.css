@@ -1,39 +1,92 @@
 @import "tailwindcss";
 
+:root {
+  color-scheme: light;
+  
+  /* Clinical Radiance - Light Palette */
+  --surface: #FFFFFF;
+  --surface-container-low: #F8FAFC;
+  --surface-container: #F1F5F9;
+  --surface-container-high: #E2E8F0;
+  --surface-container-highest: #CBD5E1;
+  --surface-bright: #FFFFFF;
+  
+  --on-surface: #0F172A;
+  --on-surface-variant: #475569;
+  
+  --primary: #2563EB;
+  --primary-dim: #1D4ED8;
+  --on-primary: #FFFFFF;
+  
+  --secondary: #7C3AED;
+  --secondary-container: #F5F3FF;
+  --on-secondary: #4C1D95;
+  
+  --tertiary: #0891B2;
+  --tertiary-container: #ECFEFF;
+  
+  --outline-variant: rgba(15, 23, 42, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.6);
+}
+
+.dark {
+  color-scheme: dark;
+  
+  /* Nocturnal - Dark Palette */
+  --surface: #060E20;
+  --surface-container-low: #091328;
+  --surface-container: #0F1930;
+  --surface-container-high: #141F38;
+  --surface-container-highest: #192540;
+  --surface-bright: #1F2B49;
+  
+  --on-surface: #DEE5FF;
+  --on-surface-variant: #A3AAC4;
+  
+  --primary: #A7A5FF;
+  --primary-dim: #645EFB;
+  --on-primary: #1C00A0;
+  
+  --secondary: #AC8AFF;
+  --secondary-container: #5516BE;
+  --on-secondary: #280067;
+  
+  --tertiary: #8CE7FF;
+  --tertiary-container: #005464;
+  
+  --outline-variant: rgba(109, 117, 140, 0.15);
+  --glass-bg: rgba(25, 37, 64, 0.4);
+}
+
 @theme inline {
   --font-sans: var(--font-jakarta);
   --font-display: var(--font-manrope);
   
-  /* Clinical Radiance Palette */
-  --color-surface: #060E20;
-  --color-surface-container-low: #091328;
-  --color-surface-container: #0F1930;
-  --color-surface-container-high: #141F38;
-  --color-surface-container-highest: #192540;
-  --color-surface-bright: #1F2B49;
+  --color-surface: var(--surface);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-bright: var(--surface-bright);
   
-  --color-on-surface: #DEE5FF;
-  --color-on-surface-variant: #A3AAC4;
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
   
-  --color-primary: #A7A5FF;
-  --color-primary-dim: #645EFB;
-  --color-on-primary: #1C00A0;
+  --color-primary: var(--primary);
+  --color-primary-dim: var(--primary-dim);
+  --color-on-primary: var(--on-primary);
   
-  --color-secondary: #AC8AFF;
-  --color-secondary-container: #5516BE;
-  --color-on-secondary: #280067;
+  --color-secondary: var(--secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary: var(--on-secondary);
   
-  --color-tertiary: #8CE7FF;
-  --color-tertiary-container: #005464;
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-container: var(--tertiary-container);
   
-  --color-outline-variant: rgba(109, 117, 140, 0.15); /* Ghost Border */
+  --color-outline-variant: var(--outline-variant);
 }
 
 /* Base Styles */
-:root {
-  color-scheme: dark;
-}
-
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
   background-color: var(--color-surface);
@@ -50,7 +103,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ---- Utility Classes ---- */
 
 .glass-morphism {
-  background: rgba(25, 37, 64, 0.4);
+  background: var(--glass-bg);
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
 }

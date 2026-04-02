@@ -3,10 +3,8 @@
 import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Send, 
   CheckCircle, 
   Loader2, 
-  ChevronRight, 
   ChevronLeft, 
   Box, 
   ClipboardList, 
@@ -20,7 +18,6 @@ import { productCategories } from "@/data/products";
 interface GetQuoteFormProps {
   prefilledCategory?: string;
   prefilledProduct?: string;
-  source?: string;
 }
 
 const steps = [
@@ -32,7 +29,6 @@ const steps = [
 export default function GetQuoteForm({
   prefilledCategory = "",
   prefilledProduct = "",
-  source = "website",
 }: GetQuoteFormProps) {
   const [currentStep, setCurrentStep] = useState(1);
   const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");

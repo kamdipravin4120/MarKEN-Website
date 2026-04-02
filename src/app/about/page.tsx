@@ -1,6 +1,6 @@
 import HeritageTimeline from "@/components/about/HeritageTimeline";
 import ManufacturingSection from "@/components/about/ManufacturingSection";
-import HeroSection from "@/components/home/HeroSection";
+
 import StatsSection from "@/components/home/StatsSection";
 import CTASection from "@/components/home/CTASection";
 import type { Metadata } from "next";

@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Shield, Award, Globe, Zap, Beaker } from "lucide-react";
+import { ArrowRight, Shield, Zap, Beaker } from "lucide-react";
 import Hero3DCanvas from "./Hero3DCanvas";
 
 export default function HeroSection() {

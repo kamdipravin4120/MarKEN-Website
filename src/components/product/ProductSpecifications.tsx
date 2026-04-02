@@ -164,7 +164,7 @@ export default function ProductSpecifications({ product }: { product: Product })
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/5">
-                    {product.variants.map((v, i) => {
+                    {product.variants.map((v) => {
                       const bags = v.specs.find((s) => s.label === "Blood Bag Storage");
                       const power = v.specs.find((s) => s.label === "Power Consumption");
                       return (

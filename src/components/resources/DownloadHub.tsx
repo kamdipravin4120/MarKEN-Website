@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FileText, Download, Filter, Search, ChevronRight } from "lucide-react";
+import { FileText, Download, Search, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const categories = ["all", "brochure", "manual", "certificate", "datasheet"];
@@ -81,7 +81,7 @@ export default function DownloadHub() {
 
             <div className="space-y-4">
               <AnimatePresence mode="popLayout">
-                {filtered.map((doc, i) => (
+                {filtered.map((doc) => (
                   <motion.div
                     key={doc.id}
                     layout

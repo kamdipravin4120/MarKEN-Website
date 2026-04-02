@@ -64,14 +64,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${jakarta.variable} h-full antialiased dark`} suppressHydrationWarning>
+    <html lang="en" className={`${manrope.variable} ${jakarta.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
         <OrganizationSchema />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-surface text-on-surface selection:bg-primary/30 selection:text-primary">
         <ThemeProvider>
           <Header />
-          <main className="flex-1 pt-[72px] lg:pt-[100px]">{children}</main>
+          <main className="flex-1 pt-20 lg:pt-28">{children}</main>
           <Footer />
           <WhatsAppFAB />
         </ThemeProvider>

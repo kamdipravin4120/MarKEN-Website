@@ -41,13 +41,13 @@ export default function ManufacturingSection() {
               Manufacturing the <span className="text-primary italic">Clinical Future</span>
             </h2>
             <p className="text-lg text-on-surface-variant leading-relaxed mb-12 opacity-80">
-              At MarKEN, we don't just build equipment; we engineer scientific instruments. 
+              At MarKEN, we don&apos;t just build equipment; we engineer scientific instruments. 
               Our manufacturing facilities are centers of excellence, where craftsmanship 
-              meets advanced robotics to deliver the world's most reliable healthcare infrastructure.
+              meets advanced robotics to deliver the world&apos;s most reliable healthcare infrastructure.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              {principles.map((p, i) => (
+              {principles.map((p) => (
                 <div key={p.title} className="group">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform mb-4">
                     {p.icon}

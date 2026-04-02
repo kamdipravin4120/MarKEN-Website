@@ -1,6 +1,6 @@
 "use client";
 
-import { Phone, Mail, MapPin, Clock, ShieldCheck, Award, Microscope, Globe } from "lucide-react";
+import { Phone, Mail, ShieldCheck, Award, Microscope, Globe } from "lucide-react";
 import GetQuoteForm from "@/components/contact/GetQuoteForm";
 import LuminousParticles from "@/components/ui/LuminousParticles";
 import { motion } from "framer-motion";
@@ -88,7 +88,7 @@ export default function GetQuotePage() {
                    <span className="text-xs font-bold text-green-400 uppercase tracking-wider">Fast-track Response</span>
                 </div>
                 <p className="text-xs text-white/40 mb-4 leading-relaxed italic">
-                  "Initiate direct encrypted session with our technical team via WhatsApp for instant documentation sharing."
+                  &quot;Initiate direct encrypted session with our technical team via WhatsApp for instant documentation sharing.&quot;
                 </p>
                 <a
                   href="https://wa.me/919130305959?text=Hi%20MarKEN%2C%20I%27d%20like%20to%20get%20a%20quote%20for%20medical%20equipment"

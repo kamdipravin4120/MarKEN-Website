@@ -1,10 +1,11 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
-import { FileText, Download, FileCode, Beaker, ShieldCheck } from "lucide-react";
+import { FileText, Download, FileCode, Beaker, ShieldCheck, LucideIcon } from "lucide-react";
 import type { Download as DownloadType } from "@/types";
 
-const typeIcons: Record<string, any> = {
+const typeIcons: Record<string, LucideIcon> = {
   brochure: FileText,
   manual: Beaker,
   certificate: ShieldCheck,

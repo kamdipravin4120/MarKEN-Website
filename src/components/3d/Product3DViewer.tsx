@@ -8,7 +8,6 @@ import {
   ContactShadows,
   Html,
   useGLTF,
-  PresentationControls,
   Float,
   MeshTransmissionMaterial,
 } from "@react-three/drei";
@@ -16,8 +15,6 @@ import * as THREE from "three";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   RotateCcw,
-  ZoomIn,
-  ZoomOut,
   Play,
   Pause,
   X,

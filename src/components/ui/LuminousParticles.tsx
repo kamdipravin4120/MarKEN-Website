@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useHasMounted } from "@/hooks/use-has-mounted";
 
 interface Particle {
   id: number;
@@ -10,9 +11,21 @@ interface Particle {
   size: number;
   duration: number;
   delay: number;
+  xOffset: number;
 }
 
-export default function LuminousParticles({ 
+export default function LuminousParticles(props: { 
+  count?: number; 
+  color?: string;
+  size?: [number, number];
+  speed?: number;
+}) {
+  const mounted = useHasMounted();
+  if (!mounted) return null;
+  return <LuminousParticlesInternal {...props} />;
+}
+
+function LuminousParticlesInternal({ 
   count = 20, 
   color = "rgba(59, 130, 246, 0.15)",
   size = [2, 6],
@@ -23,19 +36,17 @@ export default function LuminousParticles({
   size?: [number, number];
   speed?: number;
 }) {
-  const [particles, setParticles] = useState<Particle[]>([]);
-
-  useEffect(() => {
-    const newParticles = Array.from({ length: count }).map((_, i) => ({
+  const [particles] = useState<Particle[]>(() => 
+    Array.from({ length: count }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
       size: Math.random() * (size[1] - size[0]) + size[0],
       duration: (Math.random() * 20 + 10) / speed,
       delay: Math.random() * 10,
-    }));
-    setParticles(newParticles);
-  }, [count, size, speed]);
+      xOffset: Math.random() * 50 - 25,
+    }))
+  );
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -52,7 +63,7 @@ export default function LuminousParticles({
           }}
           animate={{
             y: [0, -100, 0],
-            x: [0, Math.random() * 50 - 25, 0],
+            x: [0, p.xOffset, 0],
             opacity: [0, 1, 0],
             scale: [1, 1.5, 1],
           }}
